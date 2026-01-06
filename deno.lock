@@ -1,0 +1,113 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@openai/openai@^6.15.0": "6.15.0",
+    "jsr:@std/assert@^1.0.16": "1.0.16",
+    "jsr:@std/bytes@^1.0.6": "1.0.6",
+    "jsr:@std/cli@^1.0.25": "1.0.25",
+    "jsr:@std/dotenv@~0.225.6": "0.225.6",
+    "jsr:@std/fmt@^1.0.5": "1.0.8",
+    "jsr:@std/fs@^1.0.11": "1.0.19",
+    "jsr:@std/internal@^1.0.12": "1.0.12",
+    "jsr:@std/io@~0.225.2": "0.225.2",
+    "jsr:@std/log@~0.224.14": "0.224.14",
+    "jsr:@std/streams@^1.0.16": "1.0.16",
+    "jsr:@std/yaml@^1.0.10": "1.0.10",
+    "npm:zod-to-openai-tool@~0.13.1": "0.13.1_zod@3.25.76",
+    "npm:zod@3": "3.25.76",
+    "npm:zod@^3.25.76": "3.25.76"
+  },
+  "jsr": {
+    "@openai/openai@6.15.0": {
+      "integrity": "66c40296c0d96d2fe9c0605f40b71d2cba5ccdea4cf0046ccbbd6cea0030b680",
+      "dependencies": [
+        "npm:zod@3"
+      ]
+    },
+    "@std/assert@1.0.16": {
+      "integrity": "6a7272ed1eaa77defe76e5ff63ca705d9c495077e2d5fd0126d2b53fc5bd6532",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/cli@1.0.25": {
+      "integrity": "1f85051b370c97a7a9dfc6ba626e7ed57a91bea8c081597276d1e78d929d8c91",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/dotenv@0.225.6": {
+      "integrity": "1d6f9db72f565bd26790fa034c26e45ecb260b5245417be76c2279e5734c421b"
+    },
+    "@std/fmt@1.0.8": {
+      "integrity": "71e1fc498787e4434d213647a6e43e794af4fd393ef8f52062246e06f7e372b7"
+    },
+    "@std/fs@1.0.19": {
+      "integrity": "051968c2b1eae4d2ea9f79a08a3845740ef6af10356aff43d3e2ef11ed09fb06"
+    },
+    "@std/internal@1.0.12": {
+      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
+    },
+    "@std/io@0.225.2": {
+      "integrity": "3c740cd4ee4c082e6cfc86458f47e2ab7cb353dc6234d5e9b1f91a2de5f4d6c7"
+    },
+    "@std/log@0.224.14": {
+      "integrity": "257f7adceee3b53bb2bc86c7242e7d1bc59729e57d4981c4a7e5b876c808f05e",
+      "dependencies": [
+        "jsr:@std/fmt",
+        "jsr:@std/fs",
+        "jsr:@std/io"
+      ]
+    },
+    "@std/streams@1.0.16": {
+      "integrity": "85030627befb1767c60d4f65cb30fa2f94af1d6ee6e5b2515b76157a542e89c4",
+      "dependencies": [
+        "jsr:@std/bytes"
+      ]
+    },
+    "@std/yaml@1.0.10": {
+      "integrity": "245706ea3511cc50c8c6d00339c23ea2ffa27bd2c7ea5445338f8feff31fa58e"
+    }
+  },
+  "npm": {
+    "zod-to-json-schema@3.25.1_zod@3.25.76": {
+      "integrity": "sha512-pM/SU9d3YAggzi6MtR4h7ruuQlqKtad8e9S0fmxcMi+ueAK5Korys/aWcV9LIIHTVbj01NdzxcnXSN+O74ZIVA==",
+      "dependencies": [
+        "zod"
+      ]
+    },
+    "zod-to-openai-tool@0.13.1_zod@3.25.76": {
+      "integrity": "sha512-EI1zl3NmIxJv1Sau+9SCFcfWXcR0Bk3hchXK25/aKComBkN02VYoAlwNMoGsROZeBJ6l94vk7Km54+2LC7MvUw==",
+      "dependencies": [
+        "zod",
+        "zod-to-json-schema"
+      ]
+    },
+    "zod@3.25.76": {
+      "integrity": "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="
+    }
+  },
+  "remote": {
+    "https://deno.land/x/crayon@3.3.3/mod.ts": "82ad225583a483c4837577971629cddaa22614093af8353da6426b9366de9780",
+    "https://deno.land/x/crayon@3.3.3/src/conversions.ts": "9bfd3b1fbe412bcba092890ac558b6beaad4c3aa399cd99d45fadb324d28afd6",
+    "https://deno.land/x/crayon@3.3.3/src/crayon.ts": "6b237baa08a31c903436e040afd2228a7fffaa5d11dddc58e3c402f79b3c1d04",
+    "https://deno.land/x/crayon@3.3.3/src/styles.ts": "aa588b57b2c0482dc5c6f53109b4287831a9827c0aeef9a88129beae1172c1ee",
+    "https://deno.land/x/crayon@3.3.3/src/util.ts": "af8884a917488de76ac0c2b92482093ade74514ece77a4c64e5eb5b0f6ed68e6"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@openai/openai@^6.15.0",
+      "jsr:@std/assert@^1.0.16",
+      "jsr:@std/cli@^1.0.25",
+      "jsr:@std/dotenv@~0.225.6",
+      "jsr:@std/log@~0.224.14",
+      "jsr:@std/streams@^1.0.16",
+      "jsr:@std/yaml@^1.0.10",
+      "npm:zod-to-openai-tool@~0.13.1",
+      "npm:zod@^3.25.76"
+    ]
+  }
+}
