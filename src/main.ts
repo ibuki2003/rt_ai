@@ -6,21 +6,14 @@ import z from "@zod/zod";
 import { readImage, readSource, renderImage } from "./render.ts";
 import { SldWorldSchema } from "./sld/types.ts";
 import { Stream } from "https://jsr.io/@openai/openai/6.15.0/streaming.ts";
-// import { t, createTools } from "zod-to-openai-tool";
 import { exit } from "node:process";
 
 const MODEL = "gpt-5-mini";
 
 const SYSTEM_PROMPT = `
-ツールを使用してレンダリングを行い、くりかえし調整を行って、指定されたテーマに沿った高品質な3D画像を生成してください。
-`;
-
-const INITIAL_PROMPT = `
-min-rtという非常にシンプルなレイトレーサーを使って、3Dシーンの画像を生成してください。
-画像のテーマは「正月の風景」です。
-
-サンプルの作例 \`ball\` も参考にしてください。
-
+min-rtというシンプルなレイトレーサーを使って、3Dシーンの画像を生成してください。
+ツールを使用してレンダリングを行い、画像を自ら確認しながら、くりかえし調整を行って、指定されたテーマに沿った高品質な3D画像を生成してください。
+画像を確認すれば明らかであるような不具合を放置して完成の報告をしないでください。
 `;
 
 const renderToolSchema = z.object({
@@ -84,7 +77,7 @@ async function main() {
     images: string[],
     tool_results: [string, string][];
   } = {
-    message: INITIAL_PROMPT,
+    message: "",
     images: [],
     tool_results: [],
   };
@@ -96,7 +89,8 @@ async function main() {
     console.log(Deno.args);
     fetch_id = Deno.args[0];
   }
-  nextInput.message = prompt("Enter your initial input: ") ?? nextInput.message;
+  while (nextInput.message.trim() === "")
+    nextInput.message = prompt("Enter your initial input: ") ?? "";
 
   setApiKey();
   client.maxRetries = 5;

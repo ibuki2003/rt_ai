@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "run": "deno run -A main.ts",
+    "run": "deno run -A src/main.ts",
   },
   "imports": {
     "@openai/openai": "jsr:@openai/openai@^6.15.0",
@@ -12,7 +12,6 @@
     "@std/yaml": "jsr:@std/yaml@^1.0.10",
     "@zod/zod": "npm:zod@^3.25.76",
     "crayon": "https://deno.land/x/crayon@3.3.3/mod.ts",
-    "zod-to-openai-tool": "npm:zod-to-openai-tool@^0.13.1",
   },
   "compilerOptions": {
     "types": [
