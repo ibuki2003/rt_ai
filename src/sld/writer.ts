@@ -52,12 +52,15 @@ function exportVec<T>(i: T[], itemexporter: (r: T) => string): string {
 
 function exportSldWorld(r: SldWorld): string {
   let ret = "";
-
+  const objectIndexMap: Record<string, number> = {};
+  r.objects.forEach(({ name }, idx) => {
+    objectIndexMap[name] = idx;
+  });
 
   const d2r = (deg: number) => deg * (Math.PI / 180);
   const direction_vec = {
-    x: Math.cos(d2r(r.camera_angle.a)) * Math.sin(r.camera_angle.b),
-    y: Math.sin(d2r(r.camera_angle.a)),
+    x: Math.cos(d2r(r.camera_angle.a)) * Math.sin(d2r(r.camera_angle.b)),
+    y: -Math.sin(d2r(r.camera_angle.a)),
     z: Math.cos(d2r(r.camera_angle.a)) * Math.cos(d2r(r.camera_angle.b)),
   };
   const camera_real_position = {
@@ -78,8 +81,31 @@ function exportSldWorld(r: SldWorld): string {
   }
 
   // items
-  ret += exportVec(r.objects, exportSldObject);
-  ret += exportVec(r.and_nets, (net) => net.join(" ") + " -1");
+  ret += exportVec(r.objects, (objectDef) => exportSldObject(objectDef));
+  const resolvedAndNets = r.and_nets.map((net, netIdx) => {
+    return net.map((objectName) => {
+      const objectIndex = objectIndexMap[objectName];
+      if (objectIndex === undefined) {
+        throw new Error(`ANDネット${netIdx}に存在しないオブジェクト名: ${objectName}`);
+      }
+      return objectIndex;
+    });
+  });
+
+  // add objects not in any and_nets as singletons
+  const objectsInNets = new Set<number>();
+  for (const net of resolvedAndNets) {
+    for (const objIdx of net) {
+      objectsInNets.add(objIdx);
+    }
+  }
+  r.objects.forEach((_, idx) => {
+    if (!objectsInNets.has(idx)) {
+      resolvedAndNets.push([idx]);
+    }
+  });
+
+  ret += exportVec(resolvedAndNets, (net) => net.join(" ") + " -1");
   // for (const ornet of r.or_nets) {
   //   ret += `${ornet.range_primitive_id === null ? 99 : ornet.range_primitive_id} `;
   //   ret += ornet.connected_and_nets.join(" ") + " -1\n";
@@ -87,7 +113,7 @@ function exportSldWorld(r: SldWorld): string {
 
   // create dumb or_nets
   ret += `99 `;
-  ret += r.and_nets.map((_, idx) => idx).join(" ") + " -1\n";
+  ret += resolvedAndNets.map((_, idx) => idx).join(" ") + " -1\n";
 
   ret += `-1\n`;
 

@@ -21,10 +21,6 @@ export async function renderImage_inner(input: SldWorld, outfile: string): Promi
   if (input.lights.length !== 1) {
     throw new Error("Exactly one light is required");
   }
-  if (input.and_nets.length < 1) {
-    throw new Error("At least one AND net is required");
-  }
-
 
   // convert source to raw source
   const sourceRaw = exportToSld(input);

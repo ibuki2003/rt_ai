@@ -6,7 +6,6 @@ import z from "@zod/zod";
 import { readImage, readSource, renderImage } from "./render.ts";
 import { SldWorldSchema } from "./sld/types.ts";
 import { Stream } from "https://jsr.io/@openai/openai/6.15.0/streaming.ts";
-import { exit } from "node:process";
 
 const MODEL = "gpt-5-mini";
 
@@ -52,6 +51,10 @@ const tools: OpenAI.Responses.FunctionTool[] = [
     strict: true,
   },
 ];
+
+// console.log(JSON.stringify(tools, null, 2));
+// import { exit } from "node:process";
+// exit(0);
 
 export const client = new OpenAI({ apiKey: "" });
 
